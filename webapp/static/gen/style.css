@@ -1,0 +1,104 @@
+body {
+  background-color: #F3F1F1; }
+
+  * {
+    box-sizing: border-box; }
+
+    html {
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-font-smoothing: antialiased;
+      max-width: 100%;
+      overflow-x: hidden; }
+
+      body {
+        font-family: sans-serif;
+        max-width: 100%;
+        overflow-x: hidden;
+        padding: 0;
+        margin: 0; }
+
+        h1, h2, h3, h4, h5, p {
+          -webkit-font-smoothing: antialiased;
+          padding: 0 0 25px 0;
+          margin: 0; }
+
+          h3 {
+            color: #B20A2F; }
+
+            .topbar {
+              position: absolute;
+              height: 82px;
+              width: 100vw;
+              display: flex;
+              background-color: #B20A2F;
+              justify-content: center;
+              align-items: center;
+              z-index: 10; }
+              .topbar img {
+                height: 51px; }
+
+.sidebar {
+  position: absolute;
+  background-color: #DCD9D9;
+  width: 82px;
+  height: calc(100vh - 82px);
+  top: 82px;
+  z-index: 9; }
+  .sidebar .option {
+    display: flex;
+    height: 82px;
+    border-bottom: 2px solid #979797;
+    align-items: center;
+    justify-content: center; }
+    .sidebar .option img {
+      width: 40px; }
+
+section {
+  overflow: visible;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; }
+
+  article {
+    position: relative;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    box-shadow: 10px 10px 40px 6px rgba(0, 0, 0, 0.38);
+    padding: 42px 82px;
+    min-height: 40vh;
+    min-width: 50vw;
+    display: flex;
+    justify-content: start;
+    flex-direction: column; }
+    article.result {
+      position: absolute;
+      left: calc(100% - 60px);
+      bottom: calc(50% + 30px);
+      transform: translateY(50%); }
+      article.result.active {
+        left: calc(50% + 65px);
+        transform: translate(-50%, 50%);
+        transition: all 0.5s ease; }
+    article h3 {
+      font-family: OpenSans-ExtraBold, sans-serif;
+      font-size: 22px;
+      color: #B20A2F;
+      letter-spacing: 0; }
+      article form .submit-button {
+        position: absolute;
+        bottom: 47px;
+        right: 82px;
+        background-color: transparent;
+        border: none;
+        color: #B20A2F;
+        font-family: OpenSans-ExtraBold, sans-serif;
+        font-size: 18px;
+        letter-spacing: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center; }
+        article form .submit-button:hover {
+          cursor: pointer; }
+          article form .submit-button img {
+            padding-left: 10px; }
