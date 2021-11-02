@@ -4,24 +4,63 @@
     <h3>Gegevens vertraging</h3>
     <form class="form" role="form">
 
-        <!-- smt_reactie_duur ?-->
-        <input type="number" id="smt_reactie_duur" name="smt_reactie_duur" placeholder="Reactie duur" required autofocus>
-
         <!-- stm_km_tot_mld ?-->
         <input type="text" id="stm_km_tot_mld" name="stm_km_tot_mld" placeholder="Afstand tot melding" required>
 
         <!-- stm_km_van_mld ?-->
         <input type="text" id="stm_km_van_mld" name="stm_km_van_mld" placeholder="Afstand van melding" required>
 
-        <!-- meldtijd_h ?-->
-        <input type="time" id="meldtijd_h" name="meldtijd_h" required>
+        <!-- smt_reactie_duur ?-->
+        <input type="number" id="smt_reactie_duur" name="smt_reactie_duur" placeholder="Reactie duur" required autofocus>
 
-        <!--Select 2-->
-        <select class="js-example-basic-single" name="state">
-            {% for e in traject_options %}
+        <!-- meldtijd_h ?-->
+        <input type="time" id="meldtijd" name="meldtijd" required>
+
+        <!-- stm_techn_mld ?-->
+        <select name="stm_techn_mld" id="stm_techn_mld">
+            {% for k,v in techniek.items() %}
+                <option value="{{k}}">{{v}}</option>
+            {% endfor %}
+        </select>
+
+        <!-- stm_prioriteit ?-->
+        <select name="stm_prioriteit" id="stm_prioriteit">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+        </select>
+
+        <!-- Oorzaak ?-->
+        <select class="js-example-basic-single" name="Oorzaak" id="Oorzaak">
+            {% for o in oorzaak %}
+                <option value="{{o}}">{{o}}</option>
+            {% endfor %}
+        </select>
+
+        <!-- stm_equipm_soort_mld ?-->
+        <select class="js-example-basic-single" name="stm_equipm_soort_mld" id="stm_equipm_soort_mld">
+            {% for e in soort_equipment %}
                 <option value="{{e}}">{{e}}</option>
             {% endfor %}
         </select>
+
+        <!--Traject-->
+        <select class="js-example-basic-single" name="traject">
+            {% for t in traject_options %}
+                <option value="{{t}}">{{t}}</option>
+            {% endfor %}
+        </select>
+
+        <!-- stm_contractgeb_gst ?-->
+        <select class="js-example-basic-single" name="stm_contractgeb_gst" id="stm_contractgeb_gst">
+            {% for c in contractgeb %}
+                <option value="{{c}}">{{c}}</option>
+            {% endfor %}
+        </select>
+
         <button class="submit-button" type="button">Resultaat bekijken<img src="{{url_for('static', filename='images/arrow.svg')}}" alt=""></button>
     </form>
 {% endblock %}
