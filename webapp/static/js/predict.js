@@ -1,4 +1,4 @@
-$(function(){
+$(document).ready(function(){
 	$('.submit-button').click(function(){
 		const test1 = $('#test1').val();
 		const test2 = $('#test2').val();
@@ -15,4 +15,5 @@ $(function(){
 		});
 		$('.result').addClass('active');
 	});
+	$('.js-example-basic-single').select2();
 });

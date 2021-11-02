@@ -3,8 +3,25 @@
 {% block content %}
     <h3>Gegevens vertraging</h3>
     <form class="form" role="form">
-        <input type="text" id="test1" name="test1" placeholder="test1" required autofocus>
-        <input type="text" id="test2" name="test2" placeholder="test2" required>
+
+        <!-- smt_reactie_duur ?-->
+        <input type="number" id="smt_reactie_duur" name="smt_reactie_duur" placeholder="Reactie duur" required autofocus>
+
+        <!-- stm_km_tot_mld ?-->
+        <input type="text" id="stm_km_tot_mld" name="stm_km_tot_mld" placeholder="Afstand tot melding" required>
+
+        <!-- stm_km_van_mld ?-->
+        <input type="text" id="stm_km_van_mld" name="stm_km_van_mld" placeholder="Afstand van melding" required>
+
+        <!-- meldtijd_h ?-->
+        <input type="time" id="meldtijd_h" name="meldtijd_h" required>
+
+        <!--Select 2-->
+        <select class="js-example-basic-single" name="state">
+            {% for e in traject_options %}
+                <option value="{{e}}">{{e}}</option>
+            {% endfor %}
+        </select>
         <button class="submit-button" type="button">Resultaat bekijken<img src="{{url_for('static', filename='images/arrow.svg')}}" alt=""></button>
     </form>
 {% endblock %}
