@@ -12,7 +12,7 @@ $(document).ready(function(){
 		const stm_contractgeb_gst = $('#stm_contractgeb_gst').val();
 		const stm_fh_status = $('#stm_fh_status').val();
 		$.ajax({
-			url: '/',
+			url: '/' + $(this).attr('data-url'),
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response){
