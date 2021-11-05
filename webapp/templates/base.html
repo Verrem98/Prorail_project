@@ -16,18 +16,30 @@
             <img src="{{url_for('static', filename='images/logo.svg')}}">
         </div>
         <div class="sidebar">
-            <a href="#" class="option">
+            <a href="/reactie" class="option">
                 <img src="{{url_for('static', filename='images/train.svg')}}">
+                <span>Reactieduur</span>
+            </a>
+            <a href="/easymode" class="option">
+                <img src="{{url_for('static', filename='images/train.svg')}}">
+                <span>Easy mode</span>
+            </a>
+            <a href="/" class="option">
+                <img src="{{url_for('static', filename='images/train.svg')}}">
+                <span>Hersteltijd</span>
             </a>
         </div>
     </header>
     <main>
         <section>
-            <article class="animate">
+            <article>
                 {% block content %}
                 {% endblock %}
             </article>
             <article class="result">
+                <span id="reset">
+                    <img src="{{url_for('static', filename='images/reset.svg')}}">
+                </span>
                 {% block result %}
                 {% endblock %}
             </article>

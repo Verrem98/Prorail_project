@@ -45,13 +45,25 @@ body {
   top: 82px;
   z-index: 9; }
   .sidebar .option {
+    position: relative;
     display: flex;
     height: 82px;
     border-bottom: 2px solid #979797;
     align-items: center;
     justify-content: center; }
-    .sidebar .option img {
-      width: 40px; }
+    .sidebar .option span {
+      position: absolute;
+      width: 100%;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-decoration: none;
+      color: #4F4F4F;
+      font-size: 11px;
+      text-align: center;
+      font-family: OpenSans-ExtraBold, sans-serif; }
+      .sidebar .option img {
+        width: 40px; }
 
 section {
   overflow: visible;
@@ -75,7 +87,8 @@ section {
       position: absolute;
       left: calc(100% - 60px);
       bottom: calc(50% + 30px);
-      transform: translateY(50%); }
+      transform: translateY(50%);
+      transition: all 0.5s ease; }
       article.result.active {
         left: calc(50% + 65px);
         transform: translate(-50%, 50%);
@@ -85,20 +98,52 @@ section {
       font-size: 22px;
       color: #B20A2F;
       letter-spacing: 0; }
-      article form .submit-button {
-        position: absolute;
-        bottom: 47px;
-        right: 82px;
-        background-color: transparent;
-        border: none;
-        color: #B20A2F;
-        font-family: OpenSans-ExtraBold, sans-serif;
-        font-size: 18px;
-        letter-spacing: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center; }
-        article form .submit-button:hover {
-          cursor: pointer; }
-          article form .submit-button img {
-            padding-left: 10px; }
+      article form {
+        margin-bottom: 62px; }
+        article form .group {
+          display: flex;
+          padding-bottom: 10px; }
+          article form .group label {
+            font-family: OpenSans-ExtraBold, sans-serif;
+            font-size: 14px;
+            color: #4F4F4F;
+            letter-spacing: 0;
+            display: inline-block;
+            width: 150px; }
+            article form .group label.small-label {
+              padding-left: 10px; }
+          article form .group input, article form .group select {
+            width: 77px; }
+            article form .group input.small-input, article form .group select.small-input {
+              width: 73px; }
+        article form .submit-button {
+          position: absolute;
+          bottom: 47px;
+          right: 82px;
+          background-color: transparent;
+          border: none;
+          color: #B20A2F;
+          font-family: OpenSans-ExtraBold, sans-serif;
+          font-size: 18px;
+          letter-spacing: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center; }
+          article form .submit-button:hover {
+            cursor: pointer; }
+            article form .submit-button img {
+              padding-left: 10px; }
+
+.result #reset {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  height: 21px;
+  width: 21px;
+  transition: all 0.6s ease; }
+  .result #reset:hover {
+    rotation-point: center;
+    transform-origin: center;
+    transform: rotate(-360deg);
+    transition: all 0.6s ease; }

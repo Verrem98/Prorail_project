@@ -4,24 +4,33 @@ $(document).ready(function(){
 		const stm_km_van_mld = $('#stm_km_van_mld').val();
 		const smt_reactie_duur = $('#smt_reactie_duur').val();
 		const meldtijd = $('#meldtijd').val();
-		const stm_techn_mld = $('stm_techn_mld').val();
-		const stm_prioriteit = $('stm_prioriteit').val();
-		const Oorzaak = $('Oorzaak').val();
-		const stm_equipm_soort_mld = $('stm_equipm_soort_mld').val();
-		const traject = $('traject').val();
-		const stm_contractgeb_gst = $('stm_contractgeb_gst').val();
+		const stm_techn_mld = $('#stm_techn_mld').val();
+		const stm_prioriteit = $('#stm_prioriteit').val();
+		const Oorzaak = $('#Oorzaak').val();
+		const stm_equipm_soort_mld = $('#stm_equipm_soort_mld').val();
+		const traject = $('#traject').val();
+		const stm_contractgeb_gst = $('#stm_contractgeb_gst').val();
+		const stm_fh_status = $('#stm_fh_status').val();
 		$.ajax({
 			url: '/',
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response){
-				console.log(response);
+				$('#hersteltijd').text(response.hersteltijd)
+				$('#speling').text(response.speling)
+				$('.result').addClass('active');
+				$(this).prop('disabled', true);
 			},
 			error: function(error){
 				console.log(error);
 			}
 		});
-		$('.result').addClass('active');
 	});
-	$('.js-example-basic-single').select2();
+	$('.js-example-basic-single').select2({ width: '300px' });
+
+	$('#reset').click(function (){
+		$('.result').removeClass('active');
+		$('.submit-button').prop('disabled', false);
+		$('form')[0].reset();
+	})
 });

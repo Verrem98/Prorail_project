@@ -61,16 +61,6 @@
         </div>
 
         <div class="group">
-            <!-- stm_contractgeb_gst ?-->
-            <label for="stm_contractgeb_gst">Contractgebied</label>
-            <select class="js-example-basic-single" name="stm_contractgeb_gst" id="stm_contractgeb_gst">
-                {% for c in contractgeb %}
-                    <option value="{{c}}">{{c}}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div class="group">
 
             <!--Traject-->
             <label for="traject">Traject</label>
@@ -107,7 +97,6 @@
 {% endblock %}
 
 {% block result %}
-    <h3>Resultaat</h3>
-    <p id="hersteltijd"></p>
-    <p id="speling"></p>
+    <h3>Gegevens vertraging</h3>
+    <p>Resultaat bekijken</p>
 {% endblock %}
