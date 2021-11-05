@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h3>Gegevens vertraging</h3>
+    <form class="form" role="form">
+
+        <div class="group">
+
+            <!-- stm_prioriteit ?-->
+            <label for="stm_prioriteit">Prioriteit</label>
+            <select name="stm_prioriteit" id="stm_prioriteit">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+            </select>
+        </div>
+
+        <div class="group">
+            <!-- stm_km_tot_mld ?-->
+            <label for="stm_km_tot_mld">Meters tot </label>
+            <input type="text" id="stm_km_tot_mld" name="stm_km_tot_mld" placeholder="melding" required autofocus>
+
+            <!-- smt_reactie_duur ?-->
+            <label for="stm_reactie_duur" class="small-label">Reactieduur</label>
+            <input type="number" id="stm_reactie_duur" name="stm_reactie_duur" placeholder="Minuten" class="small-input" required>
+        </div>
+
+        <div class="group">
+
+            <!-- Oorzaak ?-->
+            <label for="Oorzaak">Oorzaak</label>
+            <select class="js-example-basic-single" name="Oorzaak" id="Oorzaak">
+                {% for o in oorzaak %}
+                    <option value="{{o}}">{{o}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button class="submit-button" type="button" data-url="easymode">Resultaat bekijken<img src="{{url_for('static', filename='images/arrow.svg')}}" alt=""></button>
+    </form>
+{% endblock %}
+
+{% block result %}
+    <h3>Resultaat</h3>
+    <p id="hersteltijd"></p>
+{% endblock %}
