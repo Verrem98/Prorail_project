@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, jsonify
 import pandas
 
+from webapp.prediction_generators import return_prediction_simple
+
 views = Blueprint('views', __name__)
 
 
@@ -1949,77 +1951,75 @@ def reactieduur():
 @views.route('/easymode')
 def easymode():
 	oorzaak = [
-		'Aanrijding (bijna) tijdens werkzaamheden',
-		'Aanrijding met personen langs de baan',
-		'Aanrijding met wegverkeer',
-		'Afstelling onjuist/verlopen',
-		'Applicatie/softwarefout',
-		'Belemmerende vegetatie',
-		'Bij onderzoek in orde/geen oorzaak gevonden',
-		'Bijna aanrijding met persoon langs baan',
-		'Bijna aanrijding met wegverkeer',
-		'Braamvorming',
-		'Brand(alarm), bommelding, gevaar/explosie',
-		'Breuk/scheurvorming/afbrokkeling',
-		'Corrosie/aantasting',
-		'Defect bijzonder voertuig tijdens transport',
-		'Diefstal',
-		'Dieren, schade door of (bijna) aanrijding',
-		'Doorbranden',
-		'EMC/bliksem',
-		'Extreem hoge temperatuur',
-		'Extreem lage temperatuur',
-		'Fabricagefout',
-		'Geen onderzoek',
-		'Gladde sporen (bladval/chemicalien)',
-		'Golfslijtage',
-		'Groefvorming',
-		'IJsafzetting/ijzel',
-		'In- en uitzetten materieel',
-		'Ingebrand/verbrand',
-		'Inrijden',
-		'Isolatie',
-		'Katterug',
-		'Klapper',
-		'Kortsluiten',
-		'Lekkage',
-		'Levering nutsbedrijf: elek/gas/water/tel',
-		'Montagefout',
-		'Niet gemeld',
-		'Omhoog werken/verschuiven',
-		'Onderdeel defect door onbekende oorzaak',
-		'Ondeskundig gebruik derden (bediening)',
-		'Ongepland werk',
-		'Onjuiste geometrie/ligging/blinde vering',
-		'Onvoldoende onderhoud',
-		'Onvoldoende smering',
-		'Openrijden/kapotrijden',
-		'Overbelasting',
-		'Overig derden',
-		'Overig processen',
-		'Overig technisch',
-		'Overspanning',
-		'Pekel/zout',
-		'RCF (headcheck)',
-		'Regen/vocht/wateroverlast',
-		'Schade door weg-/werk-/waterverkeer',
-		'Slijtage',
-		'Sneeuw/hagel',
-		'Storm',
-		'Systeemfout',
-		'Trillingen',
-		'Uitloop treinvrije periode',
-		'Uitwalsing',
-		'Vandalisme',
-		'Vastgelopen',
-		'Verbogen/vervormd',
-		'Veroudering',
-		'Verrot',
-		'Vervuiling (derden)',
-		'Vervuiling (technisch)',
-		'Verzakking/klink/zetting',
-		'Vreemd voorwerp',
-		'Werkzaamheden',
+				   'Oorzaak_Aanrijding (bijna) tijdens werkzaamheden',
+				   'Oorzaak_Afstelling onjuist/verlopen',
+				   'Oorzaak_Applicatie/softwarefout',
+				   'Oorzaak_Belemmerende vegetatie',
+				   'Oorzaak_Bij onderzoek in orde/geen oorzaak gevonden',
+				   'Oorzaak_Bijna aanrijding met persoon langs baan',
+				   'Oorzaak_Bijna aanrijding met wegverkeer',
+				   'Oorzaak_Braamvorming',
+				   'Oorzaak_Brand(alarm), bommelding, gevaar/explosie',
+				   'Oorzaak_Breuk/scheurvorming/afbrokkeling',
+				   'Oorzaak_Corrosie/aantasting',
+				   'Oorzaak_Defect bijzonder voertuig tijdens transport',
+				   'Oorzaak_Diefstal',
+				   'Oorzaak_Dieren, schade door of (bijna) aanrijding',
+				   'Oorzaak_Doorbranden',
+				   'Oorzaak_EMC/bliksem',
+				   'Oorzaak_Extreem hoge temperatuur',
+				   'Oorzaak_Extreem lage temperatuur',
+				   'Oorzaak_Fabricagefout',
+				   'Oorzaak_Geen onderzoek',
+				   'Oorzaak_Gladde sporen (bladval/chemicalien)',
+				   'Oorzaak_Golfslijtage',
+				   'Oorzaak_Groefvorming',
+				   'Oorzaak_IJsafzetting/ijzel',
+				   'Oorzaak_In- en uitzetten materieel',
+				   'Oorzaak_Ingebrand/verbrand',
+				   'Oorzaak_Inrijden',
+				   'Oorzaak_Isolatie',
+				   'Oorzaak_Katterug',
+				   'Oorzaak_Klapper',
+				   'Oorzaak_Kortsluiten',
+				   'Oorzaak_Lekkage',
+				   'Oorzaak_Levering nutsbedrijf: elek/gas/water/tel',
+				   'Oorzaak_Montagefout',
+				   'Oorzaak_Niet gemeld',
+				   'Oorzaak_Omhoog werken/verschuiven',
+				   'Oorzaak_Onderdeel defect door onbekende oorzaak',
+				   'Oorzaak_Ondeskundig gebruik derden (bediening)',
+				   'Oorzaak_Ongepland werk',
+				   'Oorzaak_Onjuiste geometrie/ligging/blinde vering',
+				   'Oorzaak_Onvoldoende onderhoud',
+				   'Oorzaak_Onvoldoende smering',
+				   'Oorzaak_Openrijden/kapotrijden',
+				   'Oorzaak_Overbelasting',
+				   'Oorzaak_Overig derden',
+				   'Oorzaak_Overig processen',
+				   'Oorzaak_Overig technisch',
+				   'Oorzaak_Overspanning',
+				   'Oorzaak_Pekel/zout',
+				   'Oorzaak_RCF (headcheck)',
+				   'Oorzaak_Regen/vocht/wateroverlast',
+				   'Oorzaak_Schade door weg-/werk-/waterverkeer',
+				   'Oorzaak_Slijtage',
+				   'Oorzaak_Sneeuw/hagel',
+				   'Oorzaak_Storm',
+				   'Oorzaak_Systeemfout',
+				   'Oorzaak_Trillingen',
+				   'Oorzaak_Uitloop treinvrije periode',
+				   'Oorzaak_Uitwalsing',
+				   'Oorzaak_Vandalisme',
+				   'Oorzaak_Vastgelopen',
+				   'Oorzaak_Verbogen/vervormd',
+				   'Oorzaak_Veroudering',
+				   'Oorzaak_Verrot',
+				   'Oorzaak_Vervuiling (derden)',
+				   'Oorzaak_Vervuiling (technisch)',
+				   'Oorzaak_Verzakking/klink/zetting',
+				   'Oorzaak_Vreemd voorwerp',
+				   'Oorzaak_Werkzaamheden'
 	]
 	return render_template(
 		'easymode.html',
@@ -2029,4 +2029,16 @@ def easymode():
 
 @views.route('/easymode', methods = ['POST'])
 def easymode_result():
-	return jsonify()
+
+	stm_km_tot_mld = request.form['stm_km_tot_mld']
+	stm_reactie_duur = request.form['stm_reactie_duur']
+	stm_prioriteit = request.form['stm_prioriteit']
+	Oorzaak = request.form['Oorzaak']
+
+	continu_df = pandas.DataFrame(data={'stm_km_tot_mld': [stm_km_tot_mld], 'stm_reactie_duur': [stm_reactie_duur], 'stm_prioriteit': [stm_prioriteit]})
+
+	dummies_df = pandas.DataFrame(data={'Oorzaak': [Oorzaak]})
+
+	herstel = return_prediction_simple(continu_df, dummies_df)
+
+	return jsonify(hersteltijd=herstel, speling='+- 20 min')
