@@ -38,7 +38,6 @@ def generate_prob_chart(prob_list):
 	plt.title('zekerheid in voorspelling: ', color = '#780720', fontsize = 20, fontweight = 700)
 	ax1.axis('equal')
 	plt.tight_layout()
-	plt.show()
 	plt.savefig('probability_charts/decision_tree_pred_prob')
 
 
