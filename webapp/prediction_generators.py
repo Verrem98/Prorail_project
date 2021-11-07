@@ -13,7 +13,7 @@ def generate_prob_chart(prob_list):
 
 
 
-	labels = list([f'{0 + (i * 5)} - {5 + (i * 5)} min' for i in prob_dict.keys()])[:3]
+	labels = list([f'{0 + ((i-1) * 5)} - {5 + ((i-1) * 5)} min' for i in prob_dict.keys()])[:3]
 	labels.append('Overig')
 
 	sizes = list(prob_dict.values())[:3]
@@ -35,8 +35,10 @@ def generate_prob_chart(prob_list):
 	fig = plt.gcf()
 	fig.gca().add_artist(centre_circle)
 
+	plt.title('zekerheid in voorspelling: ', color = '#780720', fontsize = 20, fontweight = 700)
 	ax1.axis('equal')
 	plt.tight_layout()
+	plt.show()
 	plt.savefig('probability_charts/decision_tree_pred_prob')
 
 
@@ -184,22 +186,22 @@ def return_prediction_simple(df_cd, df_no):
 	pred = clf.predict(df)[0]
 
 	generate_prob_chart(clf.predict_proba(df)[0])
+	print(pred)
+	return (f'{0 + ((pred-1) * 5)} - {5 + ((pred-1) * 5)}')
 
-	return (f'{0 + (pred * 5)} - {5 + (pred * 5)}')
+stm_reactie_duur = 200
+stm_prioriteit = 7
+stm_km_tot_mld = 50
 
-#stm_reactie_duur = 200
-#stm_prioriteit = 7
-#stm_km_tot_mld = 50
-#
-d#ata = ['stm_prioriteit', 'stm_reactie_duur', 'stm_km_tot_mld']
-#df_cd = pd.DataFrame(data={v: [eval(v)] for v in data})
-#
-#Oorzaak = 'Oorzaak_Levering nutsbedrijf: elek/gas/water/tel'
-#
-#data = ['Oorzaak']
-#df_no = pd.DataFrame({v: [eval(v)] for v in data})
+data = ['stm_prioriteit', 'stm_reactie_duur', 'stm_km_tot_mld']
+df_cd = pd.DataFrame(data={v: [eval(v)] for v in data})
+
+Oorzaak = 'Oorzaak_Levering nutsbedrijf: elek/gas/water/tel'
+
+data = ['Oorzaak']
+df_no = pd.DataFrame({v: [eval(v)] for v in data})
 #
 #
-#print(return_prediction_simple(df_cd, df_no))
+print(return_prediction_simple(df_cd, df_no))
 
 
