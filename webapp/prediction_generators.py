@@ -1,27 +1,43 @@
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as pl
-import scipy.stats as stats
-from sklearn.metrics import mean_squared_error
-from sklearn.model_selection import train_test_split
-import seaborn as sns
-from sklearn.model_selection import GridSearchCV
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.linear_model import LinearRegression
-from sklearn.pipeline import Pipeline
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.linear_model import LogisticRegression
 import matplotlib.pyplot as plt
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn import svm
-from sklearn.gaussian_process import GaussianProcessClassifier
-from sklearn.model_selection import train_test_split
-from datetime import datetime
-from sklearn.metrics import accuracy_score
-from sklearn import tree
-from sklearn.metrics import r2_score
 import pickle
 from datetime import date
+
+
+def generate_prob_chart(prob_list):
+
+
+	prob_dict = {(i+1): prob_list[i] for i in range(len(prob_list))}
+	prob_dict = {k: v for k, v in sorted(prob_dict.items(), key=lambda item: item[1], reverse=True)}
+
+
+
+	labels = list([f'{0 + (i * 5)} - {5 + (i * 5)} min' for i in prob_dict.keys()])[:3]
+	labels.append('Overig')
+
+	sizes = list(prob_dict.values())[:3]
+	sizes.append(sum(list(prob_dict.values())[3:]))
+
+
+	# only "explode" the 2nd slice (i.e. 'Hogs')
+
+	colors = ['#B20A2F', '#f55679', '#f8879f', '#780720']
+
+
+	fig1, ax1 = plt.subplots()
+	_, _, autotexts = ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors = colors,pctdistance=0.85)
+
+	for autotext in autotexts:
+		autotext.set_color('white')
+
+	centre_circle = plt.Circle((0, 0), 0.70, fc='white')
+	fig = plt.gcf()
+	fig.gca().add_artist(centre_circle)
+
+	ax1.axis('equal')
+	plt.tight_layout()
+	plt.savefig('probability_charts/decision_tree_pred_prob')
 
 
 def return_prediction_simple(df_cd, df_no):
@@ -161,27 +177,29 @@ def return_prediction_simple(df_cd, df_no):
 
 	df = df_cd.join(dummie_df)
 
-	filename = 'webapp/ml_algorithms/mini_decision_tree.sav'
+	filename = 'ml_algorithms/mini_decision_tree.sav'
 
 	clf = pickle.load(open(filename, 'rb'))
 
 	pred = clf.predict(df)[0]
 
-	print(df.loc[0][:5])
+	generate_prob_chart(clf.predict_proba(df)[0])
 
 	return (f'{0 + (pred * 5)} - {5 + (pred * 5)}')
 
-# stm_reactie_duur = 200
-# stm_prioriteit = 7
-# stm_km_tot_mld = 50
+#stm_reactie_duur = 200
+#stm_prioriteit = 7
+#stm_km_tot_mld = 50
 #
-# data = ['stm_prioriteit', 'stm_reactie_duur', 'stm_km_tot_mld']
-# df_cd = pd.DataFrame(data={v: [eval(v)] for v in data})
+d#ata = ['stm_prioriteit', 'stm_reactie_duur', 'stm_km_tot_mld']
+#df_cd = pd.DataFrame(data={v: [eval(v)] for v in data})
 #
-# Oorzaak = 'Oorzaak_Levering nutsbedrijf: elek/gas/water/tel'
+#Oorzaak = 'Oorzaak_Levering nutsbedrijf: elek/gas/water/tel'
 #
-# data = ['Oorzaak']
-# df_no = pd.DataFrame({v: [eval(v)] for v in data})
+#data = ['Oorzaak']
+#df_no = pd.DataFrame({v: [eval(v)] for v in data})
 #
 #
-# print(return_prediction_simple(df_cd, df_no))
+#print(return_prediction_simple(df_cd, df_no))
+
+
