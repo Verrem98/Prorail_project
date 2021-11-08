@@ -1979,7 +1979,7 @@ def easymode():
                    'Zee - Zevenaar',
                    'Zeeland']
 
-    #Contractgebied_
+    # Contractgebied_
     oorzaak = [
         'Aanrijding (bijna) tijdens werkzaamheden',
         'Afstelling onjuist/verlopen',
@@ -2067,8 +2067,12 @@ def easymode_result():
 
     continu_df = pandas.DataFrame(data={'stm_reactie_duur': [stm_reactie_duur], 'stm_prioriteit': [stm_prioriteit]})
 
-    dummies_df = pandas.DataFrame(data={'Oorzaak': [f"Oorzaak_{Oorzaak}"], 'Contractgebied': [f"Contractgebied_{Contractgebied}"]})
+    dummies_df = pandas.DataFrame(
+        data={'Oorzaak': [f"Oorzaak_{Oorzaak}"], 'Contractgebied': [f"Contractgebied_{Contractgebied}"]})
 
-    herstel, graphdata = return_prediction_simple(continu_df, dummies_df)
+    try:
+        herstel, graphdata = return_prediction_simple(continu_df, dummies_df)
+    except ValueError:
+        return jsonify(hersteltijd='480+', speling='+- 20 min', graphdata=[None, None, None])
 
     return jsonify(hersteltijd=herstel, speling='+- 20 min', graphdata=graphdata)
