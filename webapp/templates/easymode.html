@@ -39,6 +39,17 @@
             </select>
         </div>
 
+
+     <div class="group">
+            <!-- stm_contractgeb_gst ?-->
+            <label for="Contractgebied">Contractgebied</label>
+            <select class="js-example-basic-single" name="Contractgebied" id="Contractgebied">
+                {% for c in contractgeb %}
+                    <option value="{{c}}">{{c}}</option>
+                {% endfor %}
+            </select>
+        </div>
+
         <button class="submit-button" type="button" data-url="easymode">Resultaat bekijken<img src="{{url_for('static', filename='images/arrow.svg')}}" alt=""></button>
     </form>
 {% endblock %}

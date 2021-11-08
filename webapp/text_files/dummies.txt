@@ -120,3 +120,27 @@ Oorzaak_Vervuiling (technisch)
 Oorzaak_Verzakking/klink/zetting
 Oorzaak_Vreemd voorwerp
 Oorzaak_Werkzaamheden
+Contractgebied_Amstelse Poort
+Contractgebied_Amsterdam
+Contractgebied_Betuwe
+Contractgebied_Brabant
+Contractgebied_De Peel
+Contractgebied_Den Haag
+Contractgebied_Dordrecht
+Contractgebied_Drenthe
+Contractgebied_Eemland
+Contractgebied_Friesland
+Contractgebied_Gelre
+Contractgebied_Haarlem
+Contractgebied_Hollands Noorderkwartier
+Contractgebied_Kijfhoek
+Contractgebied_Maastricht
+Contractgebied_Onbekend
+Contractgebied_Rijn en Gouwe
+Contractgebied_Roermond
+Contractgebied_Rotterdam
+Contractgebied_Twente
+Contractgebied_Utrecht
+Contractgebied_Veluwe
+Contractgebied_Zee - Zevenaar
+Contractgebied_Zeeland
