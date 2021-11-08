@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import pickle
 from datetime import date
 
+from flask import url_for
+
 
 def generate_prob_chart(prob_list):
 
@@ -35,10 +37,9 @@ def generate_prob_chart(prob_list):
 	fig = plt.gcf()
 	fig.gca().add_artist(centre_circle)
 
-	plt.title('zekerheid in voorspelling: ', color = '#780720', fontsize = 20, fontweight = 700)
 	ax1.axis('equal')
 	plt.tight_layout()
-	plt.savefig('webapp/probability_charts/decision_tree_pred_prob')
+	plt.savefig('webapp/static/images/decision_tree_pred_prob.png')
 
 
 def return_prediction_simple(df_cd, df_no):

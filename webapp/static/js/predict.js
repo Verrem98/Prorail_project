@@ -1,4 +1,4 @@
-$(document).ready(function(){
+	$(document).ready(function(){
 	$('.submit-button').click(function(){
 		const stm_km_tot_mld = $('#stm_km_tot_mld').val();
 		const stm_km_van_mld = $('#stm_km_van_mld').val();
@@ -19,6 +19,7 @@ $(document).ready(function(){
 				$('#hersteltijd').text(response.hersteltijd)
 				$('#speling').text(response.speling)
 				$('.result').addClass('active');
+				$('#prob_chart').attr('src', "static/images/decision_tree_pred_prob.png")
 				$(this).prop('disabled', true);
 			},
 			error: function(error){
