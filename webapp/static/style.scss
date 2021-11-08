@@ -21,6 +21,11 @@ body {
   overflow-x: hidden;
   padding: 0;
   margin: 0;
+  transition: all .2s ease;
+  &.no-scroll {
+    position: fixed !important;
+    transition: all .2s ease;
+  }
 }
 
 h1, h2, h3, h4, h5, p {
@@ -80,6 +85,10 @@ h3 {
   }
 }
 
+main {
+  width: 100vw;
+}
+
 section {
   overflow: visible;
   //position: relative;
@@ -87,6 +96,8 @@ section {
   align-items: center;
   justify-content: center;
   min-height: 100vh;
+  flex-direction: column;
+  margin-top: 182px;
 }
 
 article {
@@ -100,18 +111,22 @@ article {
   display: flex;
   justify-content: start;
   flex-direction: column;
-  &.result {
-    position: absolute;
-    left: calc(100% - 60px);
-    bottom: calc(50% + 30px);
-    transform: translateY(50%);
-    transition: all .5s ease;
-    height: fit-content;
+  &#result {
+    margin-top: 400px;
+    transition: all .2s ease;
+    h4 {
+      color: $prored;
+      font-family: OpenSans-ExtraBold, sans-serif;
+    }
     &.active {
-      left: calc(50% + 65px);
-      transform: translate(-50%);
-      top: 200px;
-      transition: all .5s ease;
+      margin-top: 100px;
+      transition: all .2s ease;
+      margin-bottom: 14px;
+    }
+    .prob-container {
+      canvas {
+        margin: auto;
+      }
     }
   }
 
@@ -164,12 +179,13 @@ article {
       }
       img {
         padding-left: 10px;
+        transform: rotate(90deg);
       }
     }
   }
 }
 
-.result {
+#result {
   #reset {
     position: absolute;
     top: 20px;

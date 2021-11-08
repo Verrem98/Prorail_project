@@ -45,10 +45,13 @@
 
 {% block result %}
     <h3>Resultaat</h3>
-    <p> <span id="hersteltijd"></span> minuten</p>
+
+    <h4>Voorspelde herstelijd:</h4>
+    <p>Op basis van uw gegevens voorspellen wij dat de storing <span id="hersteltijd"></span> minuten zal duren.</p>
 
     <div class="prob-container">
-      <canvas id="probChart" height="200" width="200"></canvas>
+        <h4>Zekerheid bij voorspelde hersteltijd:</h4>
+      <canvas id="probChart" height="400" width="400"></canvas>
     </div>
 
 {% endblock %}

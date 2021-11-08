@@ -15,27 +15,31 @@ body {
         max-width: 100%;
         overflow-x: hidden;
         padding: 0;
-        margin: 0; }
+        margin: 0;
+        transition: all 0.2s ease; }
+        body.no-scroll {
+          position: fixed !important;
+          transition: all 0.2s ease; }
 
-        h1, h2, h3, h4, h5, p {
-          -webkit-font-smoothing: antialiased;
-          padding: 0 0 25px 0;
-          margin: 0; }
+h1, h2, h3, h4, h5, p {
+  -webkit-font-smoothing: antialiased;
+  padding: 0 0 25px 0;
+  margin: 0; }
 
-          h3 {
-            color: #B20A2F; }
+  h3 {
+    color: #B20A2F; }
 
-            .topbar {
-              position: fixed;
-              height: 82px;
-              width: 100vw;
-              display: flex;
-              background-color: #B20A2F;
-              justify-content: center;
-              align-items: center;
-              z-index: 10; }
-              .topbar img {
-                height: 51px; }
+    .topbar {
+      position: fixed;
+      height: 82px;
+      width: 100vw;
+      display: flex;
+      background-color: #B20A2F;
+      justify-content: center;
+      align-items: center;
+      z-index: 10; }
+      .topbar img {
+        height: 51px; }
 
 .sidebar {
   position: fixed;
@@ -66,78 +70,84 @@ body {
       .sidebar .option img {
         width: 40px; }
 
-section {
-  overflow: visible;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh; }
+main {
+  width: 100vw; }
 
-  article {
-    position: relative;
-    background-color: #FFFFFF;
-    border-radius: 20px;
-    box-shadow: 10px 10px 40px 6px rgba(0, 0, 0, 0.38);
-    padding: 42px 82px;
-    min-height: 40vh;
-    min-width: 50vw;
+  section {
+    overflow: visible;
     display: flex;
-    justify-content: start;
-    flex-direction: column; }
-    article.result {
-      position: absolute;
-      left: calc(100% - 60px);
-      bottom: calc(50% + 30px);
-      transform: translateY(50%);
-      transition: all 0.5s ease;
-      height: fit-content; }
-      article.result.active {
-        left: calc(50% + 65px);
-        transform: translate(-50%);
-        top: 200px;
-        transition: all 0.5s ease; }
-    article h3 {
-      font-family: OpenSans-ExtraBold, sans-serif;
-      font-size: 22px;
-      color: #B20A2F;
-      letter-spacing: 0; }
-      article form {
-        margin-bottom: 62px; }
-        article form .group {
-          display: flex;
-          padding-bottom: 10px; }
-          article form .group label {
-            font-family: OpenSans-ExtraBold, sans-serif;
-            font-size: 14px;
-            color: #4F4F4F;
-            letter-spacing: 0;
-            display: inline-block;
-            width: 150px; }
-            article form .group label.small-label {
-              padding-left: 10px; }
-          article form .group input, article form .group select {
-            width: 77px; }
-            article form .group input.small-input, article form .group select.small-input {
-              width: 73px; }
-        article form .submit-button {
-          position: absolute;
-          bottom: 47px;
-          right: 82px;
-          background-color: transparent;
-          border: none;
-          color: #B20A2F;
-          font-family: OpenSans-ExtraBold, sans-serif;
-          font-size: 18px;
-          letter-spacing: 0;
-          display: flex;
-          justify-content: center;
-          align-items: center; }
-          article form .submit-button:hover {
-            cursor: pointer; }
-            article form .submit-button img {
-              padding-left: 10px; }
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    margin-top: 182px; }
 
-.result #reset {
+    article {
+      position: relative;
+      background-color: #FFFFFF;
+      border-radius: 20px;
+      box-shadow: 10px 10px 40px 6px rgba(0, 0, 0, 0.38);
+      padding: 42px 82px;
+      min-height: 40vh;
+      min-width: 50vw;
+      display: flex;
+      justify-content: start;
+      flex-direction: column; }
+      article#result {
+        margin-top: 400px;
+        transition: all 0.2s ease; }
+        article#result h4 {
+          color: #B20A2F;
+          font-family: OpenSans-ExtraBold, sans-serif; }
+          article#result.active {
+            margin-top: 100px;
+            transition: all 0.2s ease;
+            margin-bottom: 14px; }
+            article#result .prob-container canvas {
+              margin: auto; }
+      article h3 {
+        font-family: OpenSans-ExtraBold, sans-serif;
+        font-size: 22px;
+        color: #B20A2F;
+        letter-spacing: 0; }
+        article form {
+          margin-bottom: 62px; }
+          article form .group {
+            display: flex;
+            padding-bottom: 10px; }
+            article form .group label {
+              font-family: OpenSans-ExtraBold, sans-serif;
+              font-size: 14px;
+              color: #4F4F4F;
+              letter-spacing: 0;
+              display: inline-block;
+              width: 150px; }
+              article form .group label.small-label {
+                padding-left: 10px; }
+            article form .group input, article form .group select {
+              width: 77px; }
+              article form .group input.small-input, article form .group select.small-input {
+                width: 73px; }
+          article form .submit-button {
+            position: absolute;
+            bottom: 47px;
+            right: 82px;
+            background-color: transparent;
+            border: none;
+            color: #B20A2F;
+            font-family: OpenSans-ExtraBold, sans-serif;
+            font-size: 18px;
+            letter-spacing: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; }
+            article form .submit-button:hover {
+              cursor: pointer; }
+              article form .submit-button img {
+                padding-left: 10px;
+                transform: rotate(90deg); }
+
+#result #reset {
   position: absolute;
   top: 20px;
   right: 20px;
@@ -145,7 +155,7 @@ section {
   height: 21px;
   width: 21px;
   transition: all 0.6s ease; }
-  .result #reset:hover {
+  #result #reset:hover {
     rotation-point: center;
     transform-origin: center;
     transform: rotate(-360deg);

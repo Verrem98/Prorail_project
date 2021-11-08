@@ -16,29 +16,19 @@
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response){
+
+				$('body').removeClass('no-scroll');
+
+				$('html, body').animate({
+					scrollTop: $("#result").offset().top - 400
+				}, 1000);
+
 				$("canvas#probChart").remove();
-				$("div.prob-container").append('<canvas id="probChart" width="200" height="200"></canvas>');
+				$("div.prob-container").append('<canvas id="probChart" width="400" height="400"></canvas>');
 
 				data = response.graphdata[2];
 
 				var ctx = $('#probChart');
-
-				var options = {
-					tooltips: {
-						enabled: true
-					},
-					plugins: {
-						datalabels: {
-						  formatter: (value, ctx) => {
-
-							let sum = ctx.dataset._meta[0].total;
-							let percentage = (value * 100 / sum).toFixed(2) + "%";
-							return percentage;
-						  },
-							color: '#fff',
-						}
-					}
-				};
 
 				const prob_chart = new Chart(ctx, {
 					type: 'doughnut',
@@ -50,12 +40,18 @@
 							backgroundColor: response.graphdata[2]
 						}]
 					},
-					options: options
+					options: {
+						plugins: {
+						  datalabels: {
+							  display: true
+						  }
+						}
+					  }
 				});
 
 				$('#hersteltijd').text(response.hersteltijd)
 				$('#speling').text(response.speling)
-				$('.result').addClass('active');
+				$('#result').addClass('active');
 				$('#prob_chart').attr('src', "static/images/decision_tree_pred_prob.png")
 				$(this).prop('disabled', true);
 			},
@@ -67,8 +63,17 @@
 	$('.js-example-basic-single').select2({ width: '300px' });
 
 	$('#reset').click(function (){
-		$('.result').removeClass('active');
-		$('.submit-button').prop('disabled', false);
+		$('#result').removeClass('active');
+		// $('.submit-button').prop('disabled', false);
+
+		$('html, body').animate({
+			scrollTop: $("section").offset().top - 200
+		}, 400);
+
+		setTimeout(function() {
+			$('body').addClass('no-scroll');
+		}, 400);
+
 		// ENABLE TO RESET INPUTS ON RELOAD
 		// $('form')[0].reset();
 	})
