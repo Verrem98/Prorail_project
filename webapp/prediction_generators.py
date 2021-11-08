@@ -5,6 +5,14 @@ from datetime import date
 
 def get_graph_data(prob_list):
 
+	"""
+	returns a list of 3 lists:
+	list 1: list of color hexcodes
+	list 2: list of bin probabilities sorted desc
+	list 3: names of bins
+
+	"""
+
 
 	prob_dict = {(i+1): prob_list[i] for i in range(len(prob_list))}
 	prob_dict = {k: v for k, v in sorted(prob_dict.items(), key=lambda item: item[1], reverse=True)}
@@ -27,6 +35,11 @@ def get_graph_data(prob_list):
 
 
 def return_prediction_simple(df_cd, df_no):
+	"""
+	takes a dataframe with continuous/discrete values, and a dataframe with nominal/oridinal values
+	and returns a prediction as a string.
+
+	"""
 	today = date.today()
 
 	if int(df_cd.stm_reactie_duur.loc[0])< 480:

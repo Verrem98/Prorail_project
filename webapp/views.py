@@ -2073,6 +2073,7 @@ def easymode_result():
     try:
         herstel, graphdata = return_prediction_simple(continu_df, dummies_df)
     except ValueError:
-        return jsonify(hersteltijd='480+', speling='+- 20 min', graphdata=[None, None, None])
+        herstel = return_prediction_simple(continu_df, dummies_df)
+        return jsonify(hersteltijd=herstel, speling='+- 20 min', graphdata=[None, None, None])
 
     return jsonify(hersteltijd=herstel, speling='+- 20 min', graphdata=graphdata)
