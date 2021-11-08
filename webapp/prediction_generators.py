@@ -38,7 +38,7 @@ def generate_prob_chart(prob_list):
 	plt.title('zekerheid in voorspelling: ', color = '#780720', fontsize = 20, fontweight = 700)
 	ax1.axis('equal')
 	plt.tight_layout()
-	plt.savefig('probability_charts/decision_tree_pred_prob')
+	plt.savefig('webapp/probability_charts/decision_tree_pred_prob')
 
 
 def return_prediction_simple(df_cd, df_no):
@@ -178,7 +178,7 @@ def return_prediction_simple(df_cd, df_no):
 
 	df = df_cd.join(dummie_df)
 
-	filename = 'ml_algorithms/mini_decision_tree.sav'
+	filename = 'webapp/ml_algorithms/mini_decision_tree.sav'
 
 	clf = pickle.load(open(filename, 'rb'))
 
