@@ -2039,6 +2039,6 @@ def easymode_result():
 
 	dummies_df = pandas.DataFrame(data={'Oorzaak': [f"Oorzaak_{Oorzaak}"]})
 
-	herstel = return_prediction_simple(continu_df, dummies_df)
+	herstel, graphdata = return_prediction_simple(continu_df, dummies_df)
 
-	return jsonify(hersteltijd=herstel, speling='+- 20 min')
+	return jsonify(hersteltijd=herstel, speling='+- 20 min', graphdata=graphdata)

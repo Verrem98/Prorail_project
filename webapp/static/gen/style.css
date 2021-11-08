@@ -26,7 +26,7 @@ body {
             color: #B20A2F; }
 
             .topbar {
-              position: absolute;
+              position: fixed;
               height: 82px;
               width: 100vw;
               display: flex;
@@ -38,12 +38,13 @@ body {
                 height: 51px; }
 
 .sidebar {
-  position: absolute;
+  position: fixed;
   background-color: #DCD9D9;
   width: 82px;
-  height: calc(100vh - 82px);
-  top: 82px;
-  z-index: 9; }
+  height: 100vh;
+  top: 0;
+  z-index: 9;
+  padding-top: 82px; }
   .sidebar .option {
     position: relative;
     display: flex;
@@ -88,10 +89,12 @@ section {
       left: calc(100% - 60px);
       bottom: calc(50% + 30px);
       transform: translateY(50%);
-      transition: all 0.5s ease; }
+      transition: all 0.5s ease;
+      height: fit-content; }
       article.result.active {
         left: calc(50% + 65px);
-        transform: translate(-50%, 50%);
+        transform: translate(-50%);
+        top: 200px;
         transition: all 0.5s ease; }
     article h3 {
       font-family: OpenSans-ExtraBold, sans-serif;

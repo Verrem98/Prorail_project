@@ -16,6 +16,43 @@
 			data: $('form').serialize(),
 			type: 'POST',
 			success: function(response){
+				$("canvas#probChart").remove();
+				$("div.prob-container").append('<canvas id="probChart" width="200" height="200"></canvas>');
+
+				data = response.graphdata[2];
+
+				var ctx = $('#probChart');
+
+				var options = {
+					tooltips: {
+						enabled: true
+					},
+					plugins: {
+						datalabels: {
+						  formatter: (value, ctx) => {
+
+							let sum = ctx.dataset._meta[0].total;
+							let percentage = (value * 100 / sum).toFixed(2) + "%";
+							return percentage;
+						  },
+							color: '#fff',
+						}
+					}
+				};
+
+				const prob_chart = new Chart(ctx, {
+					type: 'doughnut',
+					data: {
+						labels: response.graphdata[0],
+						datasets: [{
+							label: 'Zekerheid bij de voorspellen',
+							data: response.graphdata[1],
+							backgroundColor: response.graphdata[2]
+						}]
+					},
+					options: options
+				});
+
 				$('#hersteltijd').text(response.hersteltijd)
 				$('#speling').text(response.speling)
 				$('.result').addClass('active');
@@ -32,6 +69,7 @@
 	$('#reset').click(function (){
 		$('.result').removeClass('active');
 		$('.submit-button').prop('disabled', false);
-		$('form')[0].reset();
+		// ENABLE TO RESET INPUTS ON RELOAD
+		// $('form')[0].reset();
 	})
 });

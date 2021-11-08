@@ -34,7 +34,7 @@ h3 {
 }
 
 .topbar {
-  position: absolute;
+  position: fixed;
   height: 82px;
   width: 100vw;
   display: flex;
@@ -48,12 +48,13 @@ h3 {
 }
 
 .sidebar {
-  position: absolute;
+  position: fixed;
   background-color: $darkergray;
   width: 82px;
-  height: calc(100vh - 82px);
-  top: 82px;
+  height: 100vh;
+  top: 0;
   z-index: 9;
+  padding-top: 82px;
   .option {
     position: relative;
     display: flex;
@@ -105,9 +106,11 @@ article {
     bottom: calc(50% + 30px);
     transform: translateY(50%);
     transition: all .5s ease;
+    height: fit-content;
     &.active {
       left: calc(50% + 65px);
-      transform: translate(-50%, 50%);
+      transform: translate(-50%);
+      top: 200px;
       transition: all .5s ease;
     }
   }
