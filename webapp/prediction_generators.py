@@ -1,10 +1,6 @@
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import pickle
 from datetime import date
-
-from flask import url_for
 
 
 def get_graph_data(prob_list):
