@@ -7,7 +7,7 @@ from datetime import date
 from flask import url_for
 
 
-def generate_prob_chart(prob_list):
+def get_graph_data(prob_list):
 
 
 	prob_dict = {(i+1): prob_list[i] for i in range(len(prob_list))}
@@ -18,28 +18,16 @@ def generate_prob_chart(prob_list):
 	labels = list([f'{0 + ((i-1) * 5)} - {5 + ((i-1) * 5)} min' for i in prob_dict.keys()])[:3]
 	labels.append('Overig')
 
-	sizes = list(prob_dict.values())[:3]
-	sizes.append(sum(list(prob_dict.values())[3:]))
-
-
-	# only "explode" the 2nd slice (i.e. 'Hogs')
+	data = list(prob_dict.values())[:3]
+	data.append(sum(list(prob_dict.values())[3:]))
 
 	colors = ['#B20A2F', '#f55679', '#f8879f', '#780720']
 
 
-	fig1, ax1 = plt.subplots()
-	_, _, autotexts = ax1.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=90, colors = colors,pctdistance=0.85)
+	return [labels,data,colors]
 
-	for autotext in autotexts:
-		autotext.set_color('white')
 
-	centre_circle = plt.Circle((0, 0), 0.70, fc='white')
-	fig = plt.gcf()
-	fig.gca().add_artist(centre_circle)
 
-	ax1.axis('equal')
-	plt.tight_layout()
-	plt.savefig('webapp/static/images/decision_tree_pred_prob.png')
 
 
 def return_prediction_simple(df_cd, df_no):
@@ -185,9 +173,7 @@ def return_prediction_simple(df_cd, df_no):
 
 	pred = clf.predict(df)[0]
 
-	generate_prob_chart(clf.predict_proba(df)[0])
-	print(pred)
-	return (f'{0 + ((pred-1) * 5)} - {5 + ((pred-1) * 5)}')
+	return (f'{0 + ((pred-1) * 5)} - {5 + ((pred-1) * 5)}'), get_graph_data(clf.predict_proba(df)[0])
 
 stm_reactie_duur = 200
 stm_prioriteit = 7
