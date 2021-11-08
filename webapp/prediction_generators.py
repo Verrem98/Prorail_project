@@ -49,7 +49,7 @@ def return_prediction_simple(df_cd, df_no):
 
 	clf = pickle.load(open(filename, 'rb'))
 
-	pred = clf.predict(df)[0]
+	pred = clf.predict(df.values)[0]
 
 	return (f'{0 + ((pred-1) * 5)} - {5 + ((pred-1) * 5)}'), get_graph_data(clf.predict_proba(df)[0])
 

@@ -77,7 +77,7 @@ Oorzaak_Groefvorming
 Oorzaak_IJsafzetting/ijzel
 Oorzaak_In- en uitzetten materieel
 Oorzaak_Ingebrand/verbrand
-Inrijden
+Oorzaak_Inrijden
 Oorzaak_Isolatie
 Oorzaak_Katterug
 Oorzaak_Klapper

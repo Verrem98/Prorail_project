@@ -2035,7 +2035,7 @@ def easymode_result():
 	stm_prioriteit = request.form['stm_prioriteit']
 	Oorzaak = request.form['Oorzaak']
 
-	continu_df = pandas.DataFrame(data={'stm_km_tot_mld': [stm_km_tot_mld], 'stm_reactie_duur': [stm_reactie_duur], 'stm_prioriteit': [stm_prioriteit]})
+	continu_df = pandas.DataFrame(data={'stm_reactie_duur': [stm_reactie_duur],'stm_prioriteit': [stm_prioriteit],'stm_km_tot_mld': [stm_km_tot_mld]})
 
 	dummies_df = pandas.DataFrame(data={'Oorzaak': [f"Oorzaak_{Oorzaak}"]})
 
