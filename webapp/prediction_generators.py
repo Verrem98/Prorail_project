@@ -1,13 +1,17 @@
-import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 import pickle
 from datetime import date
 
-from flask import url_for
-
 
 def get_graph_data(prob_list):
+
+	"""
+	returns a list of 3 lists:
+	list 1: list of color hexcodes
+	list 2: list of bin probabilities sorted desc
+	list 3: names of bins
+
+	"""
 
 
 	prob_dict = {(i+1): prob_list[i] for i in range(len(prob_list))}
@@ -31,31 +35,40 @@ def get_graph_data(prob_list):
 
 
 def return_prediction_simple(df_cd, df_no):
+	"""
+	takes a dataframe with continuous/discrete values, and a dataframe with nominal/oridinal values
+	and returns a prediction as a string.
+
+	"""
 	today = date.today()
 
-	df_no['weeknr'] = f"weeknr_w{today.isocalendar()[1]}"
+	if int(df_cd.stm_reactie_duur.loc[0])< 480:
 
-	with open('webapp/text_files/dummies.txt') as f:
-		lines = f.readlines()
+		df_no['weeknr'] = f"weeknr_w{today.isocalendar()[1]}"
 
-	all_dummies = [x.strip() for x in lines]
+		with open('webapp/text_files/dummies.txt') as f:
+			lines = f.readlines()
 
-	dummie_df = pd.DataFrame({x: [0] for x in all_dummies})
+		all_dummies = [x.strip() for x in lines]
 
-	nom_vals = [df_no['weeknr'].loc[0], df_no['Oorzaak'].loc[0]]
+		dummie_df = pd.DataFrame({x: [0] for x in all_dummies})
 
-	for x in nom_vals:
-		dummie_df[x] = 1
+		nom_vals = [df_no['weeknr'].loc[0], df_no['Oorzaak'].loc[0]]
 
-	df = df_cd.join(dummie_df)
+		for x in nom_vals:
+			dummie_df[x] = 1
 
-	filename = 'webapp/ml_algorithms/mini_decision_tree.sav'
+		df = df_cd.join(dummie_df)
 
-	clf = pickle.load(open(filename, 'rb'))
+		filename = 'webapp/ml_algorithms/mini_decision_tree.sav'
 
-	pred = clf.predict(df)[0]
+		clf = pickle.load(open(filename, 'rb'))
 
-	return (f'{0 + ((pred-1) * 5)} - {5 + ((pred-1) * 5)}'), get_graph_data(clf.predict_proba(df)[0])
+		pred = clf.predict(df.values)[0]
+
+		return (f'{0 + ((pred-1) * 5)} - {5 + ((pred-1) * 5)}'), get_graph_data(clf.predict_proba(df)[0])
+	else:
+		return '480+'
 
 #stm_reactie_duur = 200
 #stm_prioriteit = 7

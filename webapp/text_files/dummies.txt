@@ -59,12 +59,12 @@ Oorzaak_Bij onderzoek in orde/geen oorzaak gevonden
 Oorzaak_Bijna aanrijding met persoon langs baan
 Oorzaak_Bijna aanrijding met wegverkeer
 Oorzaak_Braamvorming
-Oorzaak_Brand(alarm) bommelding gevaar/explosie
+Oorzaak_Brand(alarm), bommelding, gevaar/explosie
 Oorzaak_Breuk/scheurvorming/afbrokkeling
 Oorzaak_Corrosie/aantasting
 Oorzaak_Defect bijzonder voertuig tijdens transport
 Oorzaak_Diefstal
-Oorzaak_Dieren schade door of (bijna) aanrijding
+Oorzaak_Dieren, schade door of (bijna) aanrijding
 Oorzaak_Doorbranden
 Oorzaak_EMC/bliksem
 Oorzaak_Extreem hoge temperatuur
@@ -120,3 +120,27 @@ Oorzaak_Vervuiling (technisch)
 Oorzaak_Verzakking/klink/zetting
 Oorzaak_Vreemd voorwerp
 Oorzaak_Werkzaamheden
+Contractgebied_Amstelse Poort
+Contractgebied_Amsterdam
+Contractgebied_Betuwe
+Contractgebied_Brabant
+Contractgebied_De Peel
+Contractgebied_Den Haag
+Contractgebied_Dordrecht
+Contractgebied_Drenthe
+Contractgebied_Eemland
+Contractgebied_Friesland
+Contractgebied_Gelre
+Contractgebied_Haarlem
+Contractgebied_Hollands Noorderkwartier
+Contractgebied_Kijfhoek
+Contractgebied_Maastricht
+Contractgebied_Onbekend
+Contractgebied_Rijn en Gouwe
+Contractgebied_Roermond
+Contractgebied_Rotterdam
+Contractgebied_Twente
+Contractgebied_Utrecht
+Contractgebied_Veluwe
+Contractgebied_Zee - Zevenaar
+Contractgebied_Zeeland
