@@ -1,5 +1,8 @@
 	$(document).ready(function(){
 	$('.submit-button').click(function(){
+
+		$('#result').removeClass('active');
+
 		const stm_km_tot_mld = $('#stm_km_tot_mld').val();
 		const stm_km_van_mld = $('#stm_km_van_mld').val();
 		const stm_reactie_duur = $('#stm_reactie_duur').val();
@@ -11,6 +14,7 @@
 		const traject = $('#traject').val();
 		const stm_contractgeb_gst = $('#stm_contractgeb_gst').val();
 		const stm_fh_status = $('#stm_fh_status').val();
+
 		$.ajax({
 			url: '/' + $(this).attr('data-url'),
 			data: $('form').serialize(),
@@ -60,6 +64,7 @@
 			}
 		});
 	});
+
 	$('.js-example-basic-single').select2({ width: '300px' });
 
 	$('#reset').click(function (){
@@ -73,8 +78,5 @@
 		setTimeout(function() {
 			$('body').addClass('no-scroll');
 		}, 400);
-
-		// ENABLE TO RESET INPUTS ON RELOAD
-		// $('form')[0].reset();
 	})
 });
