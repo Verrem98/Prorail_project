@@ -1,7 +1,7 @@
 import pandas as pd
 import pickle
 from datetime import date
-
+import numpy as np
 
 def get_graph_data(prob_list):
 
@@ -46,7 +46,7 @@ def return_prediction_simple(df_cd, df_no):
 
 		df_no['weeknr'] = f"weeknr_w{today.isocalendar()[1]}"
 
-		with open('webapp/text_files/dummies.txt') as f:
+		with open('webapp/text_files/dummies_mini.txt') as f:
 			lines = f.readlines()
 
 		all_dummies = [x.strip() for x in lines]
@@ -69,6 +69,39 @@ def return_prediction_simple(df_cd, df_no):
 		return (f'{0 + ((pred-1) * 5)} - {5 + ((pred-1) * 5)}'), get_graph_data(clf.predict_proba(df)[0])
 	else:
 		return '480+'
+
+
+def return_prediction_reactie(df_cd, df_no):
+	"""
+	takes a dataframe with continuous/discrete values, and a dataframe with nominal/oridinal values
+	and returns a prediction as a string.
+
+	"""
+	today = date.today()
+
+	with open('webapp/text_files/dummies_reactie.txt') as f:
+		lines = f.readlines()
+
+		all_dummies = [x.strip() for x in lines]
+
+		dummie_df = pd.DataFrame({x: [0] for x in all_dummies})
+
+		nom_vals = [df_no['Traject'].loc[0],df_no['meldtijd_h'].loc[0].split(':')[0] ,df_no['stm_equipm_soort_mld'].loc[0],
+					df_no['stm_techn_mld'].loc[0]]
+
+		for x in nom_vals:
+
+			dummie_df[x] = 1
+
+		df = df_cd.join(dummie_df)
+
+		filename = 'webapp/ml_algorithms/decision_tree_duration_bin_reactie.sav'
+
+		clf = pickle.load(open(filename, 'rb'))
+		pred = clf.predict(df.values)[0]
+
+		print((np.mean([((pred-1) * 5),(5 + ((pred-1) * 5))])))
+		return(int(np.mean([((pred-1) * 5),(5 + ((pred-1) * 5))])))
 
 #stm_reactie_duur = 200
 #stm_prioriteit = 7
