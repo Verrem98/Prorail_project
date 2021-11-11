@@ -5,26 +5,6 @@
     <form class="form" role="form">
 
         <div class="group">
-            <!-- stm_km_tot_mld ?-->
-            <label for="stm_km_tot_mld">Meters tot </label>
-            <input type="text" id="stm_km_tot_mld" name="stm_km_tot_mld" placeholder="melding" required autofocus>
-
-            <!-- stm_km_van_mld ?-->
-            <label for="stm_km_van_mld" class="small-label">Meters van </label>
-            <input type="text" id="stm_km_van_mld" name="stm_km_van_mld" placeholder="melding" class="small-input" required>
-        </div>
-
-        <div class="group">
-            <!-- meldtijd_h ?-->
-            <label for="meldtijd">Meldtijd</label>
-            <input type="time" id="meldtijd" name="meldtijd" required>
-
-            <!-- smt_reactie_duur ?-->
-            <label for="smt_reactie_duur" class="small-label">Reactieduur</label>
-            <input type="number" id="smt_reactie_duur" name="smt_reactie_duur" placeholder="Minuten" class="small-input" required>
-        </div>
-
-        <div class="group">
 
             <!-- stm_prioriteit ?-->
             <label for="stm_prioriteit">Prioriteit</label>
@@ -37,48 +17,9 @@
                 <option value="9">9</option>
             </select>
 
-            <!-- stm_fh_status ?-->
-            <label for="stm_fh_status" class="small-label">Herstel status</label>
-            <select name="stm_fh_status" id="stm_fh_status" class="small-input">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </div>
-
-        <div class="group">
-
-            <!-- stm_equipm_soort_mld ?-->
-            <label for="stm_equipm_soort_mld">Equipment nummer</label>
-            <select class="js-example-basic-single" name="stm_equipm_soort_mld" id="stm_equipm_soort_mld">
-                {% for e in soort_equipment %}
-                    <option value="{{e}}">{{e}}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div class="group">
-            <!-- stm_contractgeb_gst ?-->
-            <label for="stm_contractgeb_gst">Contractgebied</label>
-            <select class="js-example-basic-single" name="stm_contractgeb_gst" id="stm_contractgeb_gst">
-                {% for c in contractgeb %}
-                    <option value="{{c}}">{{c}}</option>
-                {% endfor %}
-            </select>
-        </div>
-
-        <div class="group">
-
-            <!--Traject-->
-            <label for="traject">Traject</label>
-            <select class="js-example-basic-single" id="traject" name="traject">
-                {% for t in traject_options %}
-                    <option value="{{t}}">{{t}}</option>
-                {% endfor %}
-            </select>
+            <!-- smt_reactie_duur ?-->
+            <label for="stm_reactie_duur" class="small-label">Reactieduur</label>
+            <input type="number" id="stm_reactie_duur" name="stm_reactie_duur" placeholder="Minuten" class="small-input" required>
         </div>
 
         <div class="group">
@@ -92,12 +33,13 @@
             </select>
         </div>
 
-        <div class="group">
-            <!-- stm_techn_mld ?-->
-            <label for="stm_techn_mld">Techniek melding</label>
-            <select name="stm_techn_mld" id="stm_techn_mld" class="js-example-basic-single">
-                {% for k,v in techniek.items() %}
-                    <option value="{{k}}">{{v}}</option>
+
+     <div class="group">
+            <!-- stm_contractgeb_gst ?-->
+            <label for="Contractgebied">Contractgebied</label>
+            <select class="js-example-basic-single" name="Contractgebied" id="Contractgebied">
+                {% for c in contractgeb %}
+                    <option value="{{c}}">{{c}}</option>
                 {% endfor %}
             </select>
         </div>
@@ -108,6 +50,13 @@
 
 {% block result %}
     <h3>Resultaat</h3>
-    <p id="hersteltijd"></p>
-    <p id="speling"></p>
+
+    <h4>Voorspelde hersteltijd:</h4>
+    <p>Op basis van uw gegevens voorspellen wij een hersteltijd van <b><span style="color: #B20A2F" id="hersteltijd"></span></b> minuten.</p>
+
+    <div class="prob-container">
+        <h4>Zekerheid van voorspelde hersteltijd:</h4>
+      <canvas id="probChart" height="400" width="400"></canvas>
+    </div>
+
 {% endblock %}
