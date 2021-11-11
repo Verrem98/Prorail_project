@@ -94,6 +94,7 @@ def return_prediction_reactie(df_cd, df_no):
 			dummie_df[x] = 1
 
 		df = df_cd.join(dummie_df)
+		print(list(df))
 
 		filename = 'webapp/ml_algorithms/decision_tree_duration_bin_reactie.sav'
 
@@ -101,7 +102,7 @@ def return_prediction_reactie(df_cd, df_no):
 		pred = clf.predict(df.values)[0]
 
 		print((np.mean([((pred-1) * 5),(5 + ((pred-1) * 5))])))
-		return(int(np.mean([((pred-1) * 5),(5 + ((pred-1) * 5))])))
+		return(int(np.mean([((pred-1) * 5),(5 + ((pred-1) * 5))])) , get_graph_data(clf.predict_proba(df)[0]))
 
 #stm_reactie_duur = 200
 #stm_prioriteit = 7

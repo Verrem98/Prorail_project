@@ -9,9 +9,6 @@
             <label for="stm_km_tot_mld">Meters tot </label>
             <input type="text" id="stm_km_tot_mld" name="stm_km_tot_mld" placeholder="melding" required autofocus>
 
-            <!-- stm_km_van_mld ?-->
-            <label for="stm_km_van_mld" class="small-label">Meters van </label>
-            <input type="text" id="stm_km_van_mld" name="stm_km_van_mld" placeholder="melding" class="small-input" required>
         </div>
 
         <div class="group">
@@ -19,35 +16,10 @@
             <label for="meldtijd">Meldtijd</label>
             <input type="time" id="meldtijd" name="meldtijd" required>
 
-            <!-- smt_reactie_duur ?-->
-            <label for="smt_reactie_duur" class="small-label">Reactieduur</label>
-            <input type="number" id="smt_reactie_duur" name="smt_reactie_duur" placeholder="Minuten" class="small-input" required>
         </div>
 
-        <div class="group">
 
-            <!-- stm_prioriteit ?-->
-            <label for="stm_prioriteit">Prioriteit</label>
-            <select name="stm_prioriteit" id="stm_prioriteit">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="8">8</option>
-                <option value="9">9</option>
-            </select>
 
-            <!-- stm_fh_status ?-->
-            <label for="stm_fh_status" class="small-label">Herstel status</label>
-            <select name="stm_fh_status" id="stm_fh_status" class="small-input">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-                <option value="5">5</option>
-                <option value="6">6</option>
-            </select>
-        </div>
 
         <div class="group">
 
@@ -71,16 +43,6 @@
             </select>
         </div>
 
-        <div class="group">
-
-            <!-- Oorzaak ?-->
-            <label for="Oorzaak">Oorzaak</label>
-            <select class="js-example-basic-single" name="Oorzaak" id="Oorzaak">
-                {% for o in oorzaak %}
-                    <option value="{{o}}">{{o}}</option>
-                {% endfor %}
-            </select>
-        </div>
 
         <div class="group">
             <!-- stm_techn_mld ?-->
@@ -97,6 +59,13 @@
 {% endblock %}
 
 {% block result %}
-    <h3>Gegevens vertraging</h3>
-    <p>Resultaat bekijken</p>
+    <<h3>Resultaat</h3>
+
+    <h4>Voorspelde Reactie duur:</h4>
+    <p>Op basis van uw gegevens voorspellen wij een Reactie duur van <b><span style="color: #B20A2F" id="hersteltijd"></span></b> minuten.</p>
+
+    <div class="prob-container">
+        <h4>Zekerheid van voorspelde Reactie duur :</h4>
+      <canvas id="probChart" height="400" width="400"></canvas>
+    </div>
 {% endblock %}

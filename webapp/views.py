@@ -205,7 +205,7 @@ def reactie_duur_result():
               'stm_techn_mld':[f"stm_techn_mld_{stm_techn_mld}"]})
 
 
-    duur = return_prediction_reactie(continu_df, dummies_df)
+    duur , graphdata = return_prediction_reactie(continu_df, dummies_df)
 
 
-    return jsonify(hersteltijd=duur)
+    return jsonify(hersteltijd=duur, graphdata=graphdata)
