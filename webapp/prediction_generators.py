@@ -56,10 +56,11 @@ def return_prediction_simple(df_cd, df_no):
 		nom_vals = [df_no['weeknr'].loc[0], df_no['Oorzaak'].loc[0]]
 
 		for x in nom_vals:
-			dummie_df[x] = 1
+			dummie_df[x.strip()] = 1
 
 		df = df_cd.join(dummie_df)
 
+		print(list(df)[-1])
 		filename = 'webapp/ml_algorithms/mini_decision_tree.sav'
 
 		clf = pickle.load(open(filename, 'rb'))
