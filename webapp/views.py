@@ -17,13 +17,12 @@ def herstel():
 				contractgeb.append(c)
 
 	# Contractgebied_
-	oorzaak = []
-	with open('webapp/text_files/oorzaak.txt', 'r') as o:
-		reader = csv.reader(o)
-		for row in reader:
-			if len(row) > 1:
-				c = row[0]
-				oorzaak.append(c)
+	with open('webapp/text_files/oorzaak.txt') as f:
+		lines = f.readlines()
+
+	oorzaak = [x.strip() for x in lines]
+
+	print(oorzaak)
 	return render_template(
 		'index.html',
 		oorzaak = oorzaak,
